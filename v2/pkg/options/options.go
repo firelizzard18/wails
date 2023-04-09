@@ -62,6 +62,7 @@ type App struct {
 	OnShutdown         func(ctx context.Context)                `json:"-"`
 	OnBeforeClose      func(ctx context.Context) (prevent bool) `json:"-"`
 	Bind               []interface{}
+	ErrorFormatter     ErrorFormatter
 	WindowStartState   WindowStartState
 
 	// CSS property to test for draggable elements. Default "--wails-draggable"
@@ -85,6 +86,8 @@ type App struct {
 	// Debug options for debug builds. These options will be ignored in a production build.
 	Debug Debug
 }
+
+type ErrorFormatter func(error) any
 
 type RGBA struct {
 	R uint8 `json:"r"`
